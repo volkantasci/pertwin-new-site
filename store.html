@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreAnalytics AI — Fiziksel Mağaza Analitiği</title>
+    <meta name="description" content="IoT ve AI destekli mağaza analitik platformu. Ziyaretçi davranışı, trafik analizi ve satış optimizasyonu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ec4899 100%);
+            --gradient-2: linear-gradient(90deg, #00f0ff 0%, #3b82f6 100%);
+            --gradient-cyan: linear-gradient(135deg, #00f0ff 0%, #0891b2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-cyan);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-cyan);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-cyan);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-cyan);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-cyan);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .store-visual {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .heatmap {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(0, 240, 255, 0.4) 0%, transparent 30%),
+                radial-gradient(circle at 70% 60%, rgba(0, 240, 255, 0.3) 0%, transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 20%);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .data-points {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-point {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.8); }
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50px;
+            color: var(--accent-cyan);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1);
+        }
+
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Metrics */
+        .metrics {
+            padding: 6rem 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-cyan);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .cta-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 4rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-cyan);
+            opacity: 0.05;
+        }
+
+        .cta-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StoreAnalytics AI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="store.html" style="color: var(--accent-cyan);">Mağaza</a></li>
+                <li><a href="ecommerce.html">E-Ticaret</a></li>
+                <li><a href="features.html">Özellikler</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Demo Al</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">IoT + AI Destekli</div>
+                <h1>Mağazanızın <span>Dijital İkizi</span></h1>
+                <p class="hero-description">
+                    IoT sensörleri, kameralar ve yapay zeka ile mağaza performansınızı gerçek zamanlı izleyin. 
+                    Ziyaretçi davranışını analiz edin ve satışlarınızı optimize edin.
+                </p>
+                <a href="contact.html" class="btn-primary">
+                    Demo Talep Et
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="store-visual">
+                    <div class="heatmap"></div>
+                    <div class="data-points">
+                        <div class="data-point" style="top: 30%; left: 25%;">245</div>
+                        <div class="data-point" style="top: 50%; left: 60%;">189</div>
+                        <div class="data-point" style="top: 70%; left: 40%;">312</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Özellikler</span>
+                <h2 class="section-title">Mağaza Analitiğinde Sınır Tanımayın</h2>
+                <p class="section-description">
+                    Tüm veri kaynaklarınızı tek platformda birleştirin ve aksiyon alınabilir içgörüler elde edin.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎯 Ziyaretçi Analizi</h3>
+                    <p>Kamera ve sensör verileriyle mağaza içi ziyaretçi hareketlerini takip edin.</p>
+                    <ul class="feature-list">
+                        <li>Gerçek zamanlı ziyaretçi sayısı</li>
+                        <li>Kalış süresi analizi</li>
+                        <li>Demografik dağılım</li>
+                        <li>Yinelenen ziyaretçi oranı</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🔥 Isı Haritası</h3>
+                    <p>Mağaza içindeki en popüler ve en az kullanılan alanları görselleştirin.</p>
+                    <ul class="feature-list">
+                        <li>Bölge bazlı trafik yoğunluğu</li>
+                        <li>Reyon performans analizi</li>
+                        <li>Kasa ve giriş optimizasyonu</li>
+                        <li>Görsel heatmap raporları</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Dönüşüm Hunisi</h3>
+                    <p>Müşteri yolculuğunu adım adım analiz edin ve kayıp noktaları tespit edin.</p>
+                    <ul class="feature-list">
+                        <li>Giriş → İnceleme → Satın alma</li>
+                        <li>Bölge bazlı dönüşüm oranları</li>
+                        <li>Kayıp satış analizi</li>
+                        <li>Aksiyon önerileri</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🤖 AI Tahminleme</h3>
+                    <p>Yapay zeka ile gelecekteki satış trendlerini ve ziyaretçi sayılarını tahmin edin.</p>
+                    <ul class="feature-list">
+                        <li>Günlük/haftalık ziyaretçi tahmini</li>
+                        <li>Satış trend analizi</li>
+                        <li>Sezonsal pattern tanıma</li>
+                        <li>Personel planlama önerileri</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Başarı Ölçütleri</span>
+                <h2 class="section-title">Kanıtlanmış Sonuçlar</h2>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">+32%</div>
+                    <div class="metric-label">Dönüşüm Oranı Artışı</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">-25%</div>
+                    <div class="metric-label">Kayıp Satış Azalması</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">Tahmin Doğruluğu</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">+40%</div>
+                    <div class="metric-label">Verimlilik Artışı</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-container">
+                <h2>Mağazanızı Dönüştürmeye Hazır mısınız?</h2>
+                <p>StoreAnalytics AI ile fiziksel mağaza operasyonlarınızı optimize edin ve rekabet avantajı elde edin.</p>
+                <a href="contact.html" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">
+                    Demo Talep Et
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">P</div>
+                        <span class="logo-text">PerTwin AI</span>
+                    </a>
+                    <p>Yapay zeka destekli perakende analitik platformu.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="store.html">StoreAnalytics AI</a></li>
+                        <li><a href="ecommerce.html">Commercelytics AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Şirket</h4>
+                    <ul>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Yasal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Gizlilik</a></li>
+                        <li><a href="terms.html">Koşullar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PerTwin AI. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

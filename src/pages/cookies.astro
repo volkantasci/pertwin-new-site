@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const cookieTypes = [
+  {
+    name: 'Zorunlu Çerezler',
+    description: 'Web sitesinin temel işlevleri için gereklidir. Devre dışı bırakılamaz.',
+    examples: ['Oturum yönetimi', 'Güvenlik tokenları', 'Dil tercihi'],
+    duration: 'Oturum süresi',
+  },
+  {
+    name: 'Analitik Çerezler',
+    description: 'Web sitesinin kullanımını analiz etmek için kullanılır.',
+    examples: ['Google Analytics', 'Sayfa görüntülemeleri', 'Kullanıcı davranışı'],
+    duration: '2 yıl',
+  },
+  {
+    name: 'Pazarlama Çerezleri',
+    description: 'Kişiselleştirilmiş reklamlar için kullanılır.',
+    examples: ['Remarketing', 'Hedefleme', 'Dönüşüm takibi'],
+    duration: '90 gün',
+  },
+  {
+    name: 'İşlevsel Çerezler',
+    description: 'Hatırlama tercihleri ve kişiselleştirme için kullanılır.',
+    examples: ['Tema tercihi', 'Login hatırlama', 'Bölge ayarları'],
+    duration: '1 yıl',
+  },
+];
+---
+
+<Layout title="Çerez Politikası — PerTwin">
+  <section class="py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Badge variant="pink" class="mb-6">Yasal</Badge>
+      <h1 class="text-3xl lg:text-4xl font-display font-bold text-text-primary mb-4">
+        Çerez Politikası
+      </h1>
+      <p class="text-text-secondary mb-4">
+        Son güncelleme: 15 Ocak 2026
+      </p>
+      <p class="text-text-secondary mb-12">
+        Bu çerez politikası, PerTwin web sitesinde kullanılan çerezleri ve benzer teknolojileri açıklar.
+      </p>
+
+      <div class="mb-12 p-6 rounded-2xl bg-bg-card border border-white/10">
+        <h2 class="text-xl font-display font-semibold text-text-primary mb-4">
+          Çerez Nedir?
+        </h2>
+        <p class="text-text-secondary text-sm">
+          Çerezler, web sitesi tarafından cihazınıza yerleştirilen küçük metin dosyalarıdır.
+          Web sitesinin düzgün çalışmasını sağlar, kullanıcı deneyimini iyileştirir ve
+          site kullanımını analiz etmeye yardımcı olur.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {cookieTypes.map((cookie) => (
+          <div class="p-6 rounded-2xl bg-bg-card border border-white/10">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-lg font-display font-semibold text-text-primary">{cookie.name}</h3>
+              <span class="text-xs text-text-muted px-3 py-1 rounded-full bg-bg-tertiary">{cookie.duration}</span>
+            </div>
+            <p class="text-text-secondary text-sm mb-4">{cookie.description}</p>
+            <div>
+              <p class="text-xs text-text-muted mb-2">Örnekler:</p>
+              <div class="flex flex-wrap gap-2">
+                {cookie.examples.map((example) => (
+                  <span class="text-xs text-text-muted px-2 py-1 rounded bg-bg-tertiary">{example}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl bg-cyan/10 border border-cyan/20">
+        <h2 class="text-xl font-display font-semibold text-text-primary mb-4">
+          Çerezleri Yönetme
+        </h2>
+        <p class="text-text-secondary text-sm mb-4">
+          Tarayıcı ayarlarınızdan çerezleri yönetebilirsiniz:
+        </p>
+        <ul class="text-text-secondary text-sm space-y-2">
+          <li>• Chrome: Ayarlar → Gizlilik ve Güvenlik → Çerezler</li>
+          <li>• Firefox: Seçenekler → Gizlilik ve Güvenlik → Çerezler</li>
+          <li>• Safari: Tercihler → Gizlilik → Çerezler</li>
+          <li>• Edge: Ayarlar → Çerezler ve Site İzinleri</li>
+        </ul>
+        <p class="text-text-muted text-xs mt-4">
+          Not: Çerezleri devre dışı bırakmak web sitesi deneyiminizi etkileyebilir.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

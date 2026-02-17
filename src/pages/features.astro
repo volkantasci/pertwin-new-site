@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/sections/CTA.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+
+const coreFeatures = [
+  {
+    icon: 'brain',
+    title: 'AI Tahminleme',
+    description: 'Time series forecasting, demand planning ve customer churn prediction ile geleceği görün.',
+    details: ['Günlük/haftalık satış tahminleri', 'Stok ihtiyaç planlaması', 'Mevsimsel pattern analizi', 'Müşteri kayıp tahmini'],
+    color: 'cyan',
+  },
+  {
+    icon: 'cube',
+    title: 'Dijital İkiz',
+    description: '3D mağaza simülasyonu, what-if analizleri ve scenario testing ile risk almadan karar verin.',
+    details: ['Gerçek zamanlı mağaza modeli', 'Reyon değişikliği simülasyonu', 'Personel planlama', 'A/B test ortamı'],
+    color: 'purple',
+  },
+  {
+    icon: 'lightning',
+    title: 'Anlık İçgörüler',
+    description: 'Real-time dashboard, instant notifications ve automatic reporting ile her an haberdar olun.',
+    details: ['Canlı performans takibi', 'Anomaly detection', 'Custom alerts', 'Otomatik raporlama'],
+    color: 'pink',
+  },
+  {
+    icon: 'cog',
+    title: 'Otomasyon',
+    description: 'Stock replenishment, price optimization ve campaign management ile manuel işleri azaltın.',
+    details: ['Otomatik stok yenileme', 'Dinamik fiyatlandırma', 'Kampanya otomasyonu', 'Workflow automation'],
+    color: 'cyan',
+  },
+];
+
+const techStack = [
+  { name: 'Python', description: 'ML modelleri ve veri işleme', icon: 'code' },
+  { name: 'TensorFlow', description: 'Deep learning modelleri', icon: 'brain' },
+  { name: 'Cloud', description: 'Ölçeklenebilir altyapı', icon: 'globe' },
+  { name: 'Güvenli', description: 'Banka seviyesi güvenlik', icon: 'shield' },
+];
+---
+
+<Layout title="Özellikler — PerTwin Platform">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple/10 via-bg-primary to-cyan/10"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="purple" class="mb-6">Platform Özellikleri</Badge>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary">
+        AI ile <span class="gradient-text">Güçlendirilmiş</span> Platform
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto">
+        Yapay zeka ve makine öğrenmesi teknolojileriyle donatılmış, perakende operasyonlarınızı
+        her aşamada destekleyen kapsamlı platform.
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="cyan" class="mb-4">Temel Özellikler</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Dört Ana Yetenek
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        {coreFeatures.map((feature, index) => (
+          <Card variant="gradient" padding="lg" class={index % 2 === 1 ? 'lg:flex-row-reverse' : ''}>
+            <div class={`lg:grid lg:grid-cols-2 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div class={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${
+                  feature.color === 'cyan' ? 'bg-cyan/20' :
+                  feature.color === 'purple' ? 'bg-purple/20' :
+                  'bg-pink/20'
+                }`}>
+                  <Icon
+                    name={feature.icon}
+                    size="xl"
+                    class={
+                      feature.color === 'cyan' ? 'text-cyan' :
+                      feature.color === 'purple' ? 'text-purple' :
+                      'text-pink'
+                    }
+                  />
+                </div>
+                <h3 class="text-2xl font-display font-bold text-text-primary mb-4">{feature.title}</h3>
+                <p class="text-text-secondary mb-6">{feature.description}</p>
+                <ul class="space-y-3">
+                  {feature.details.map((detail) => (
+                    <li class="flex items-center gap-3 text-text-muted">
+                      <Icon name="check" size="sm" class="text-green-400" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class={`mt-8 lg:mt-0 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div class="aspect-video rounded-2xl bg-bg-tertiary border border-white/10 flex items-center justify-center">
+                  <div class="text-center text-text-muted">
+                    <Icon name={feature.icon} size="xl" class="mx-auto mb-4 opacity-30" />
+                    <p class="text-sm">Özellik Görselleştirmesi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="pink" class="mb-4">Teknoloji</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Güçlü Teknoloji Altyapısı
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        {techStack.map((tech) => (
+          <Card hover>
+            <div class="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center mb-4">
+              <Icon name={tech.icon} size="lg" class="text-cyan" />
+            </div>
+            <h3 class="text-lg font-display font-semibold text-text-primary mb-2">{tech.name}</h3>
+            <p class="text-sm text-text-muted">{tech.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="Platformu Keşfedin"
+    description="Tüm özellikleri görmek ve size uygun çözümü bulmak için bizimle iletişime geçin."
+    primaryCta={{ text: 'Demo Talep Et', href: '/contact' }}
+    secondaryCta={{ text: 'Ürünleri Gör', href: '/store' }}
+  />
+</Layout>

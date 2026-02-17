@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Features from '../components/sections/Features.astro';
+import Metrics from '../components/sections/Metrics.astro';
+import CTA from '../components/sections/CTA.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+import DataFusion from '../components/visual/DataFusion.astro';
+
+const heroStats = [
+  { value: '95%', label: 'Tahmin Doğruluğu' },
+  { value: '+32%', label: 'Satış Artışı' },
+  { value: '24', label: 'AI Modülü' },
+];
+
+const features = [
+  { icon: 'brain', title: 'AI Tahminleme', description: 'Geçmiş verileri analiz ederek gelecekteki satış trendlerini, stok ihtiyaçlarını ve müşteri davranışlarını %95 doğrulukla tahmin edin.' },
+  { icon: 'cube', title: 'Dijital İkiz', description: 'Her mağazanızın ve ürününüzün dijital ikizini oluşturun. Gerçek zamanlı simülasyonlarla kararlarınızı test edin.' },
+  { icon: 'lightning', title: 'Anlık İçgörüler', description: 'Satış, stok, müşteri davranışı ve operasyonel verileri anlık olarak izleyin ve aksiyon alın.' },
+  { icon: 'target', title: 'Kişiselleştirme', description: 'Müşterilerinize yapay zeka destekli öneriler sunun. Sepet değerini %28 artırın.' },
+  { icon: 'chart', title: 'Gelişmiş Analitik', description: 'Derinlemesine analiz raporları ve interaktif dashboardlarla veriye dayalı kararlar alın.' },
+  { icon: 'cog', title: 'Otomasyon', description: 'Stok yenileme, fiyat optimizasyonu ve kampanya yönetimini otomatikleştirin.' },
+];
+
+const stats = [
+  { value: '500+', label: 'Aktif Mağaza', variant: 'cyan' as const },
+  { value: '₺2M+', label: 'Kazandırılan Gelir', variant: 'purple' as const },
+  { value: '40%', label: 'Verimlilik Artışı', variant: 'pink' as const },
+  { value: '99.9%', label: 'Uptime', variant: 'cyan' as const },
+];
+
+const storeFeatures = [
+  'Ziyaretçi davranış analizi',
+  'Isı haritası ve trafik analizi',
+  'Satış tahminleme',
+  'Reyon optimizasyonu',
+];
+
+const ecommerceFeatures = [
+  'Akıllı ürün önerileri',
+  'Sepet terk azaltma',
+  'Dinamik fiyatlandırma',
+  'Kampanya optimizasyonu',
+];
+---
+
+<Layout title="PerTwin — Geleceğin Perakende Zekası">
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center py-16 lg:py-24 overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,229,255,0.1),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.1),transparent_50%)]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <Badge variant="cyan" class="mb-6">
+            <span class="w-2 h-2 rounded-full bg-cyan animate-pulse mr-2"></span>
+            Yapay Zeka Destekli
+          </Badge>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
+            Geleceğin <span class="gradient-text">Perakende Zekası</span>
+          </h1>
+          <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-xl">
+            Mağazalarınız ve e-ticaret operasyonlarınız için yapay zeka destekli dijital ikiz platform.
+            Veriden aksiyona, tek platformda.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href="/contact" variant="primary" size="lg">
+              Ücretsiz Demo
+              <Icon name="arrow-right" size="sm" class="ml-2" />
+            </Button>
+            <Button href="/features" variant="secondary" size="lg">
+              Özellikleri Keşfet
+            </Button>
+          </div>
+
+          <!-- Hero Stats -->
+          <div class="mt-12 grid grid-cols-3 gap-6">
+            {heroStats.map((stat) => (
+              <div>
+                <p class="text-2xl lg:text-3xl font-display font-bold text-cyan">{stat.value}</p>
+                <p class="text-sm text-text-muted">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="hidden lg:block relative">
+          <div class="relative w-full h-[500px]">
+            <!-- Animated brain visual -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-cyan to-purple rounded-full blur-[60px] opacity-60 animate-pulse"></div>
+
+            <!-- Orbit rings -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border border-white/10 rounded-full animate-spin" style="animation-duration: 20s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/10 rounded-full animate-spin" style="animation-duration: 30s; animation-direction: reverse;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/10 rounded-full animate-spin" style="animation-duration: 40s;"></div>
+
+            <!-- Orbit nodes -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-cyan rounded-full shadow-lg shadow-cyan/50"></div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96">
+              <div class="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-purple rounded-full shadow-lg shadow-purple/50"></div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px]">
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-pink rounded-full shadow-lg shadow-pink/50"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Fusion Section -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="purple" class="mb-4">Teknoloji</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Veri Füzyonu Teknolojisi
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Çevrimdışı ve çevrimiçi verileri birleştirerek eksiksiz içgörüler elde edin
+        </p>
+      </div>
+      <DataFusion />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="purple" class="mb-4">Temel Özellikler</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          AI Gücüyle Perakendeyi Dönüştürün
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Yapay zeka ve makine öğrenmesi teknolojileriyle donatılmış kapsamlı perakende analitik platformu.
+        </p>
+      </div>
+      <Features features={features} columns={3} />
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="cyan" class="mb-4">Ürünlerimiz</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          İhtiyacınıza Uygun Çözüm
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Fiziksel mağazalarınız veya e-ticaret operasyonunuz için özel olarak tasarlanmış AI çözümleri.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- StoreAnalytics -->
+        <Card variant="gradient" padding="lg" class="relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-cyan/10 rounded-full blur-[80px]"></div>
+          <div class="relative">
+            <Badge variant="cyan">Fiziksel Mağaza</Badge>
+            <h3 class="mt-4 text-2xl font-display font-bold text-text-primary">StoreAnalytics AI</h3>
+            <p class="mt-3 text-text-secondary">
+              IoT sensörleri, kamera sistemleri ve POS verilerini yapay zeka ile birleştirerek mağaza performansınızı optimize edin.
+            </p>
+            <ul class="mt-6 space-y-3">
+              {storeFeatures.map((feature) => (
+                <li class="flex items-center gap-3 text-text-secondary">
+                  <Icon name="arrow-right" size="sm" class="text-cyan" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <Button href="/store" variant="primary" class="mt-8">
+              Detayları Gör
+            </Button>
+          </div>
+        </Card>
+
+        <!-- Commercelytics -->
+        <Card variant="gradient" padding="lg" class="relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-pink/10 rounded-full blur-[80px]"></div>
+          <div class="relative">
+            <Badge variant="pink">E-Ticaret</Badge>
+            <h3 class="mt-4 text-2xl font-display font-bold text-text-primary">Commercelytics AI</h3>
+            <p class="mt-3 text-text-secondary">
+              E-ticaret operasyonlarınızı yapay zeka ile güçlendirin. Müşteri davranışını anlayın ve satışları artırın.
+            </p>
+            <ul class="mt-6 space-y-3">
+              {ecommerceFeatures.map((feature) => (
+                <li class="flex items-center gap-3 text-text-secondary">
+                  <Icon name="arrow-right" size="sm" class="text-pink" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <Button href="/ecommerce" variant="primary" class="mt-8">
+              Detayları Gör
+            </Button>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 lg:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan/5 via-purple/5 to-pink/5"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Başarıya Dair Sayılar
+        </h2>
+      </div>
+      <Metrics metrics={stats} columns={4} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="Perakendenizi Dönüştürmeye Hazır mısınız?"
+    description="Yapay zeka destekli perakende platformumuzu keşfedin ve rekabet avantajı elde edin."
+    primaryCta={{ text: 'Demo Talep Et', href: '/contact' }}
+    secondaryCta={{ text: 'Blog\'u Oku', href: '/blog' }}
+  />
+</Layout>

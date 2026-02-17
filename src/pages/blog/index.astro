@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Badge from '../../components/ui/Badge.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+// Blog posts data (will be replaced with content collection)
+const posts = [
+  {
+    slug: 'data-fusion-technology-retail',
+    title: 'Perakendede Data Fusion Teknolojisi',
+    description: 'Offline ve online verileri birleştirerek perakende operasyonlarınızı nasıl optimize edebilirsiniz? Data fusion teknolojisinin gücünü keşfedin.',
+    category: 'AI',
+    pubDate: new Date('2026-01-15'),
+    readingTime: '5 dk',
+  },
+  {
+    slug: 'ecommerce-conversion-strategies',
+    title: 'E-Ticarette Dönüşüm Oranını %24 Artıran Stratejiler',
+    description: 'E-ticaret sitenizde dönüşüm oranlarını artırmak için kanıtlanmış stratejiler ve AI destekli optimizasyon teknikleri.',
+    category: 'E-Commerce',
+    pubDate: new Date('2026-01-12'),
+    readingTime: '7 dk',
+  },
+  {
+    slug: 'store-network-performance',
+    title: 'Mağaza Ağında Performans Karşılaştırması',
+    description: 'Birden fazla mağazanız var mı? Network intelligence ile tüm mağazalarınızı nasıl optimize edebileceğinizi öğrenin.',
+    category: 'Analytics',
+    pubDate: new Date('2026-01-10'),
+    readingTime: '6 dk',
+  },
+  {
+    slug: 'personalized-recommendations',
+    title: 'Kişiselleştirilmiş Önerilerle Sepet Değerini Artırın',
+    description: 'AI destekli kişiselleştirme ile müşteri başına sepet değerini %28\'e kadar artırmanın yolları.',
+    category: 'Personalization',
+    pubDate: new Date('2026-01-08'),
+    readingTime: '4 dk',
+  },
+  {
+    slug: 'ai-ml-applications-retail',
+    title: 'Perakendede AI ve Machine Learning Uygulamaları',
+    description: 'Yapay zeka ve makine öğrenmesi teknolojilerinin perakende sektöründe nasıl kullanıldığını keşfedin.',
+    category: 'Technology',
+    pubDate: new Date('2026-01-05'),
+    readingTime: '8 dk',
+  },
+  {
+    slug: 'campaign-performance-analysis',
+    title: 'Kampanya Performans Analizi: Hangi Kanallar Çalışıyor?',
+    description: 'Marketing kampanyalarınızın performansını analiz ederek ROI\'nizi nasıl maksimize edebilirsiniz?',
+    category: 'Marketing',
+    pubDate: new Date('2026-01-03'),
+    readingTime: '5 dk',
+  },
+];
+
+const categories = ['Tümü', 'AI', 'E-Commerce', 'Analytics', 'Personalization', 'Technology', 'Marketing'];
+---
+
+<Layout title="Blog — PerTwin">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 via-bg-primary to-purple/10"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="cyan" class="mb-6">Blog & İçgörüler</Badge>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary">
+        Perakende <span class="gradient-text">Trendleri</span> ve İpuçları
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto">
+        AI destekli perakende analitiği hakkında en son içerikler, trendler ve uzman görüşleri.
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-8 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap gap-2 justify-center">
+        {categories.map((category, index) => (
+          <button
+            class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+              index === 0
+                ? 'bg-cyan text-bg-primary'
+                : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+            }`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <BlogCard {...post} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="purple" class="mb-4">Bültene Abone Ol</Badge>
+      <h2 class="text-2xl lg:text-3xl font-display font-bold text-text-primary mb-4">
+        En Son İçgörülerden Haberdar Olun
+      </h2>
+      <p class="text-text-secondary mb-8">
+        Perakende AI ve analitiği hakkında en son makaleler ve trendler için bültenimize abone olun.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="E-posta adresiniz"
+          class="flex-1 px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 text-sm font-semibold text-bg-primary bg-gradient-to-r from-cyan to-purple rounded-lg hover:opacity-90 transition-opacity"
+        >
+          Abone Ol
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,52 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  primaryCta?: {
+    text: string;
+    href: string;
+  };
+  secondaryCta?: {
+    text: string;
+    href: string;
+  };
+  variant?: 'cyan' | 'purple' | 'pink' | 'default';
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const { title, description, primaryCta, secondaryCta, variant = 'default', align = 'center', class: className = '' } = Astro.props;
+
+const gradientClass = variant === 'default' ? 'gradient-text' : '';
+const alignClass = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+---
+
+<section class={`py-16 lg:py-24 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class={`flex flex-col ${alignClass}`}>
+      <h1 class={`text-4xl md:text-5xl lg:text-6xl font-display font-bold ${gradientClass} max-w-4xl`}>
+        {title}
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-2xl">
+        {description}
+      </p>
+      {(primaryCta || secondaryCta) && (
+        <div class="mt-8 flex flex-wrap gap-4">
+          {primaryCta && (
+            <Button href={primaryCta.href} variant="primary" size="lg">
+              {primaryCta.text}
+            </Button>
+          )}
+          {secondaryCta && (
+            <Button href={secondaryCta.href} variant="secondary" size="lg">
+              {secondaryCta.text}
+            </Button>
+          )}
+        </div>
+      )}
+    </div>
+    <slot />
+  </div>
+</section>

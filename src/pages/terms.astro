@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const sections = [
+  {
+    title: '1. Hizmet Tanımı',
+    content: `PerTwin, perakende analitiği ve yapay zeka çözümleri sunan bir SaaS platformudur. Hizmetlerimiz:
+
+- StoreAnalytics AI: Fiziksel mağaza analitiği
+- Commercelytics AI: E-ticaret analitiği
+- Dashboard ve raporlama araçları
+- API erişimi ve entegrasyonlar`,
+  },
+  {
+    title: '2. Kullanım Koşulları',
+    content: `Platformumuzu kullanırken aşağıdaki kurallara uymayı kabul edersiniz:
+
+- Hesap bilgilerinizi gizli tutmak
+- Yasalara uygun şekilde kullanmak
+- Diğer kullanıcılara zarar vermemek
+- Hizmeti kötüye kullanmamak
+- Doğru bilgi sağlamak`,
+  },
+  {
+    title: '3. Ödeme ve Fiyatlandırma',
+    content: `- Aylık veya yıllık abonelik seçenekleri
+- Kullanım bazlı ek ücretler olabilir
+- Faturalar vadesinde ödenmelidir
+- İade politikası sözleşmenize tabidir`,
+  },
+  {
+    title: '4. Fikri Mülkiyet',
+    content: `- Platform ve içerikler PerTwin'e aittir
+- Kullanıcı verileri kullanıcıya aittir
+- Lisans, kullanım içindir, devredilemez
+- Ticari markalar izinsiz kullanılamaz`,
+  },
+  {
+    title: '5. Sorumluluk Sınırları',
+    content: `- Hizmet "olduğu gibi" sunulur
+- Dolaylı zararlardan sorumlu değiliz
+- Maksimum sorumluluk ödenen tutarla sınırlı
+- Force majeure durumlarında sorumluluk yok`,
+  },
+];
+---
+
+<Layout title="Kullanım Koşulları — PerTwin">
+  <section class="py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Badge variant="cyan" class="mb-6">Yasal</Badge>
+      <h1 class="text-3xl lg:text-4xl font-display font-bold text-text-primary mb-4">
+        Kullanım Koşulları
+      </h1>
+      <p class="text-text-secondary mb-4">
+        Son güncelleme: 15 Ocak 2026
+      </p>
+      <p class="text-text-secondary mb-12">
+        Bu kullanım koşulları, PerTwin platformunu kullanımınızı düzenler. Platformu kullanarak bu koşulları kabul etmiş sayılırsınız.
+      </p>
+
+      <div class="space-y-12">
+        {sections.map((section) => (
+          <div class="p-6 rounded-2xl bg-bg-card border border-white/10">
+            <h2 class="text-xl font-display font-semibold text-text-primary mb-4">
+              {section.title}
+            </h2>
+            <div class="text-text-secondary whitespace-pre-line text-sm leading-relaxed">
+              {section.content}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl bg-purple/10 border border-purple/20">
+        <h2 class="text-xl font-display font-semibold text-text-primary mb-4">
+          Değişiklikler
+        </h2>
+        <p class="text-text-secondary text-sm">
+          Bu koşulları zaman zaman güncelleyebiliriz. Önemli değişikliklerde kullanıcılara e-posta yoluyla bildirim yapılır.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

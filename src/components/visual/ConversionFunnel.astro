@@ -1,0 +1,80 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`relative ${className}`}>
+  <div class="p-6 rounded-2xl bg-bg-card border border-white/10">
+    <h4 class="text-sm font-medium text-text-primary mb-6">Dönüşüm Hunisi</h4>
+
+    <div class="relative max-w-md mx-auto">
+      <!-- Funnel stages -->
+      <div class="relative">
+        <!-- Stage 1: Entry -->
+        <div class="relative">
+          <div class="h-14 bg-gradient-to-r from-cyan/40 to-cyan/20 rounded-t-xl flex items-center justify-center">
+            <span class="text-sm font-medium text-text-primary">Mağazaya Giriş</span>
+            <span class="ml-4 text-xs text-cyan">100%</span>
+          </div>
+        </div>
+
+        <!-- Stage 2: Browse -->
+        <div class="relative mx-4">
+          <div class="h-14 bg-gradient-to-r from-purple/40 to-purple/20 flex items-center justify-center">
+            <span class="text-sm font-medium text-text-primary">Ürün İnceleme</span>
+            <span class="ml-4 text-xs text-purple">72%</span>
+          </div>
+        </div>
+
+        <!-- Stage 3: Interest -->
+        <div class="relative mx-8">
+          <div class="h-14 bg-gradient-to-r from-blue/40 to-blue/20 flex items-center justify-center">
+            <span class="text-sm font-medium text-text-primary">İlgi & Etkileşim</span>
+            <span class="ml-4 text-xs text-blue">45%</span>
+          </div>
+        </div>
+
+        <!-- Stage 4: Cart -->
+        <div class="relative mx-12">
+          <div class="h-14 bg-gradient-to-r from-pink/40 to-pink/20 flex items-center justify-center">
+            <span class="text-sm font-medium text-text-primary">Sepet</span>
+            <span class="ml-4 text-xs text-pink">28%</span>
+          </div>
+        </div>
+
+        <!-- Stage 5: Purchase -->
+        <div class="relative mx-16">
+          <div class="h-14 bg-gradient-to-r from-green-500/40 to-green-500/20 rounded-b-xl flex items-center justify-center">
+            <span class="text-sm font-medium text-text-primary">Satın Alma</span>
+            <span class="ml-4 text-xs text-green-400">18%</span>
+          </div>
+        </div>
+
+        <!-- Drop-off indicators -->
+        <div class="absolute right-0 top-14 transform translate-x-full pl-4">
+          <div class="text-xs text-red-400">
+            <span class="block">-28%</span>
+            <span class="text-text-muted">Kayıp</span>
+          </div>
+        </div>
+        <div class="absolute right-0 top-28 transform translate-x-full pl-4">
+          <div class="text-xs text-red-400">
+            <span class="block">-27%</span>
+            <span class="text-text-muted">Kayıp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Insight -->
+    <div class="mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
+      <p class="text-sm text-text-secondary">
+        <span class="text-red-400 font-medium">Kayıp Satış Fırsatı:</span>
+        Her 100 ziyaretçiden 82'si satın alma yapmıyor. AI analizi ile bu oranı %25'e kadar düşürebilirsiniz.
+      </p>
+    </div>
+  </div>
+</div>

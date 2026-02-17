@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+
+const contactInfo = [
+  {
+    icon: 'mail',
+    label: 'E-posta',
+    value: 'info@pertwin.ai',
+    href: 'mailto:info@pertwin.ai',
+  },
+  {
+    icon: 'phone',
+    label: 'Telefon',
+    value: '+90 212 123 45 67',
+    href: 'tel:+902121234567',
+  },
+  {
+    icon: 'location',
+    label: 'Adres',
+    value: 'Levent, İstanbul, Türkiye',
+    href: '#',
+  },
+];
+---
+
+<Layout title="İletişim — PerTwin">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 via-bg-primary to-purple/10"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="cyan" class="mb-6">İletişim</Badge>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary">
+        Demo <span class="gradient-text">Talep Edin</span>
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto">
+        PerTwin platformunu keşfetmek için bizimle iletişime geçin.
+        Size özel bir demo sunalım.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <Card variant="gradient" padding="lg">
+          <h2 class="text-2xl font-display font-bold text-text-primary mb-6">Bize Ulaşın</h2>
+
+          <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-text-secondary mb-2">Ad</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+                  placeholder="Adınız"
+                  required
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-text-secondary mb-2">Soyad</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+                  placeholder="Soyadınız"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-text-secondary mb-2">E-posta</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+                placeholder="ornek@sirket.com"
+                required
+              />
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="company" class="block text-sm font-medium text-text-secondary mb-2">Şirket</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+                  placeholder="Şirket adı"
+                />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-text-secondary mb-2">Telefon</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+                  placeholder="+90 5XX XXX XX XX"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="product" class="block text-sm font-medium text-text-secondary mb-2">İlgilendiğiniz Ürün</label>
+              <select
+                id="product"
+                name="product"
+                class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors"
+              >
+                <option value="">Seçiniz</option>
+                <option value="store">StoreAnalytics AI</option>
+                <option value="ecommerce">Commercelytics AI</option>
+                <option value="both">Her İkisi</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-text-secondary mb-2">Mesajınız</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full px-4 py-3 bg-bg-tertiary border border-white/10 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition-colors resize-none"
+                placeholder="Nasıl yardımcı olabiliriz?"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-4 text-base font-semibold text-bg-primary bg-gradient-to-r from-cyan to-purple rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Demo Talep Et
+            </button>
+          </form>
+        </Card>
+
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-2xl font-display font-bold text-text-primary mb-6">İletişim Bilgileri</h2>
+            <div class="space-y-6">
+              {contactInfo.map((info) => (
+                <a
+                  href={info.href}
+                  class="flex items-start gap-4 p-4 rounded-xl bg-bg-card border border-white/10 hover:border-cyan/30 transition-colors group"
+                >
+                  <div class="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center group-hover:bg-cyan/20 transition-colors">
+                    <Icon name={info.icon} size="lg" class="text-cyan" />
+                  </div>
+                  <div>
+                    <p class="text-sm text-text-muted">{info.label}</p>
+                    <p class="text-text-primary font-medium">{info.value}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <Card variant="gradient" padding="md">
+            <h3 class="text-lg font-display font-semibold text-text-primary mb-4">Neden Demo Almalısınız?</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-text-secondary">
+                <Icon name="check" size="sm" class="text-cyan" />
+                Platformu canlı görün
+              </li>
+              <li class="flex items-center gap-3 text-text-secondary">
+                <Icon name="check" size="sm" class="text-cyan" />
+                Size özel kullanım senaryoları
+              </li>
+              <li class="flex items-center gap-3 text-text-secondary">
+                <Icon name="check" size="sm" class="text-cyan" />
+                ROI hesaplaması
+              </li>
+              <li class="flex items-center gap-3 text-text-secondary">
+                <Icon name="check" size="sm" class="text-cyan" />
+                Entegrasyon olanakları
+              </li>
+            </ul>
+          </Card>
+
+          <Card variant="glass" padding="md">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan to-purple flex items-center justify-center">
+                <Icon name="clock" size="lg" class="text-white" />
+              </div>
+              <div>
+                <p class="text-sm text-text-muted">Ortalama Yanıt Süresi</p>
+                <p class="text-xl font-display font-bold text-text-primary">24 Saat</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

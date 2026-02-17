@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özellikler — PerTwin AI</title>
+    <meta name="description" content="PerTwin AI özellikleri: AI tahminleme, dijital ikiz, anlık içgörüler ve otomasyon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 50px;
+            color: var(--accent-purple);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 2rem 6rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: rgba(236, 72, 153, 0.1);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-item p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0.05;
+        }
+
+        .cta-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">P</div>
+                <span class="logo-text">PerTwin AI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="store.html">Mağaza</a></li>
+                <li><a href="ecommerce.html">E-Ticaret</a></li>
+                <li><a href="features.html">Özellikler</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Demo Al</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <span class="section-tag">Tüm Özellikler</span>
+            <h1>AI ile Perakendeyi <span>Yeniden Tanımlıyoruz</span></h1>
+            <p>En gelişmiş yapay zeka teknolojileriyle donatılmış kapsamlı perakende analitik platformu.</p>
+            <a href="contact.html" class="btn-primary">
+                Demo Talep Et
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>AI Tahminleme</h3>
+                    <p>Makine öğrenmesi modelleri ile geleceği tahmin edin. Satış trendleri, stok ihtiyaçları ve müşteri davranışları hakkında %95 doğrulukla öngörüler elde edin.</p>
+                    <ul class="feature-list">
+                        <li>Zaman serisi tahminleme</li>
+                        <li>Talep planlama</li>
+                        <li>Müşteri churn tahmini</li>
+                        <li>Sezonsal analiz</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <h3>Dijital İkiz</h3>
+                    <p>Mağazalarınızın ve ürünlerinizin dijital kopyalarını oluşturun. Simülasyonlarla farklı senaryoları test edin ve risk almadan kararlar alın.</p>
+                    <ul class="feature-list">
+                        <li>3D mağaza simülasyonu</li>
+                        <li>What-if analizi</li>
+                        <li>Senaryo testi</li>
+                        <li>Risk değerlendirme</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Anlık İçgörüler</h3>
+                    <p>Verilerinizi gerçek zamanlı izleyin ve anlık aksiyonlar alın. Otomatik uyarılar ile önemli değişiklikleri kaçırmayın.</p>
+                    <ul class="feature-list">
+                        <li>Real-time dashboard</li>
+                        <li>Anlık bildirimler</li>
+                        <li>Otomatik raporlama</li>
+                        <li>Performans takibi</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Otomasyon</h3>
+                    <p>Tekrarlayan işlemleri otomatikleştirin ve ekibinizin stratejik görevlere odaklanmasını sağlayın.</p>
+                    <ul class="feature-list">
+                        <li>Stok yenileme</li>
+                        <li>Fiyat optimizasyonu</li>
+                        <li>Kampanya yönetimi</li>
+                        <li>Rapor oluşturma</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-tag">Teknoloji</span>
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1rem;">Güçlü Teknoloji Altyapısı</h2>
+                <p style="color: var(--text-secondary);">Endüstri standardı teknolojiler ile güvenilir ve ölçeklenebilir çözümler.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <h4>Python</h4>
+                    <p>ML modelleri ve veri işleme</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚛️</div>
+                    <h4>TensorFlow</h4>
+                    <p>Derin öğrenme modelleri</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☁️</div>
+                    <h4>Cloud</h4>
+                    <p>Ölçeklenebilir altyapı</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔒</div>
+                    <h4>Secure</h4>
+                    <p>Banka düzeyi güvenlik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Hemen Başlayın</h2>
+                <p>Perakende operasyonlarınızı AI ile dönüştürün.</p>
+                <a href="contact.html" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">
+                    Demo Talep Et
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">P</div>
+                        <span class="logo-text">PerTwin AI</span>
+                    </a>
+                    <p>Yapay zeka destekli perakende analitik platformu.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="store.html">StoreAnalytics AI</a></li>
+                        <li><a href="ecommerce.html">Commercelytics AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Şirket</h4>
+                    <ul>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Yasal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Gizlilik</a></li>
+                        <li><a href="terms.html">Koşullar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PerTwin AI. Tüm hakları saklıdır.</p>
+                <p>Türkiye'nin ilk AI destekli perakende platformu.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

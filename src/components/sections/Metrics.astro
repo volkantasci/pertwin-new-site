@@ -1,0 +1,33 @@
+---
+import StatCard from '../ui/StatCard.astro';
+
+interface Metric {
+  value: string;
+  label: string;
+  variant?: 'cyan' | 'purple' | 'pink' | 'default';
+}
+
+interface Props {
+  metrics: Metric[];
+  columns?: 2 | 3 | 4;
+  class?: string;
+}
+
+const { metrics, columns = 4, class: className = '' } = Astro.props;
+
+const gridCols = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-3',
+  4: 'md:grid-cols-2 lg:grid-cols-4',
+};
+---
+
+<div class={`grid gap-4 lg:gap-6 ${gridCols[columns]} ${className}`}>
+  {metrics.map((metric) => (
+    <StatCard
+      value={metric.value}
+      label={metric.label}
+      variant={metric.variant || 'default'}
+    />
+  ))}
+</div>

@@ -1,0 +1,49 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  primaryCta: {
+    text: string;
+    href: string;
+  };
+  secondaryCta?: {
+    text: string;
+    href: string;
+  };
+  class?: string;
+}
+
+const { title, description, primaryCta, secondaryCta, class: className = '' } = Astro.props;
+---
+
+<section class={`py-16 lg:py-24 ${className}`}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative p-8 lg:p-12 rounded-3xl bg-gradient-to-b from-bg-card to-bg-tertiary border border-white/10 overflow-hidden">
+      <!-- Background glow -->
+      <div class="absolute inset-0 bg-gradient-glow opacity-50"></div>
+
+      <div class="relative text-center">
+        <h2 class="text-2xl lg:text-3xl font-display font-bold text-text-primary">
+          {title}
+        </h2>
+        {description && (
+          <p class="mt-4 text-text-secondary">
+            {description}
+          </p>
+        )}
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <Button href={primaryCta.href} variant="primary" size="lg">
+            {primaryCta.text}
+          </Button>
+          {secondaryCta && (
+            <Button href={secondaryCta.href} variant="secondary" size="lg">
+              {secondaryCta.text}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Metrics from '../components/sections/Metrics.astro';
+import CTA from '../components/sections/CTA.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+import DashboardPreview from '../components/visual/DashboardPreview.astro';
+
+const features = [
+  {
+    icon: 'target',
+    title: 'Akıllı Ürün Önerileri',
+    description: 'Sepet bazlı öneriler, benzer müşteri analizi ve cross-sell fırsatları ile sepet değerini %28 artırın.',
+    color: 'pink',
+  },
+  {
+    icon: 'shopping-cart',
+    title: 'Sepet Terk Azaltma',
+    description: 'Gerçek zamanlı uyarılar, otomatik e-posta kampanyaları ve kişiselleştirilmiş tekliflerle sepet terk oranını %45 düşürün.',
+    color: 'purple',
+  },
+  {
+    icon: 'lightning',
+    title: 'Kampanya Optimizasyonu',
+    description: 'Müşteri segmentasyonu, en iyi zaman önerileri ve kanal optimizasyonu ile kampanya ROI\'nizi 4x artırın.',
+    color: 'cyan',
+  },
+  {
+    icon: 'chart',
+    title: 'Gelişmiş Raporlama',
+    description: 'Lifetime value analizi, satış hunisi görünürlüğü ve ürün performans takibi ile derinlemesine içgörüler.',
+    color: 'blue',
+  },
+];
+
+const results = [
+  { value: '+32%', label: 'Satış Artışı', variant: 'pink' as const },
+  { value: '-45%', label: 'Sepet Terk Azalması', variant: 'purple' as const },
+  { value: '+28%', label: 'Sepet Değeri Artışı', variant: 'cyan' as const },
+  { value: '4x', label: 'Kampanya ROI', variant: 'pink' as const },
+];
+---
+
+<Layout title="Commercelytics AI — E-Ticaret Analitiği">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-pink/10 via-bg-primary to-bg-primary"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <Badge variant="pink" class="mb-6">E-Ticaret Analitiği</Badge>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
+            E-Ticaretinizi <span class="text-pink">Akıllı Hale</span> Getirin
+          </h1>
+          <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-xl">
+            Yapay zeka destekli e-ticaret analitiği ile müşteri davranışını anlayın,
+            kişiselleştirilmiş deneyimler sunun ve satışları artırın.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/contact" class="inline-flex items-center px-6 py-3 text-base font-semibold text-bg-primary bg-gradient-to-r from-pink to-purple rounded-lg hover:opacity-90 transition-opacity">
+              Ücretsiz Deneyin
+              <Icon name="arrow-right" size="sm" class="ml-2" />
+            </a>
+            <a href="#features" class="inline-flex items-center px-6 py-3 text-base font-semibold text-text-primary bg-bg-tertiary border border-white/10 rounded-lg hover:bg-bg-card transition-colors">
+              Özellikleri Gör
+            </a>
+          </div>
+        </div>
+
+        <div class="hidden lg:block">
+          <DashboardPreview variant="ecommerce" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="pink" class="mb-4">Özellikler</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          E-Ticaretinizi Güçlendiren Özellikler
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Commercelytics AI ile e-ticaret operasyonlarınızı bir üst seviyeye taşıyın
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {features.map((feature) => (
+          <Card hover>
+            <div class={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+              feature.color === 'pink' ? 'bg-pink/20' :
+              feature.color === 'purple' ? 'bg-purple/20' :
+              feature.color === 'cyan' ? 'bg-cyan/20' :
+              'bg-blue/20'
+            }`}>
+              <Icon
+                name={feature.icon}
+                size="lg"
+                class={
+                  feature.color === 'pink' ? 'text-pink' :
+                  feature.color === 'purple' ? 'text-purple' :
+                  feature.color === 'cyan' ? 'text-cyan' :
+                  'text-blue'
+                }
+              />
+            </div>
+            <h3 class="text-xl font-display font-semibold text-text-primary mb-3">{feature.title}</h3>
+            <p class="text-text-muted">{feature.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="purple" class="mb-4">Nasıl Çalışır</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          3 Adımda Daha Akıllı E-Ticaret
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-pink/10 flex items-center justify-center mb-4">
+            <span class="text-2xl font-display font-bold text-pink">1</span>
+          </div>
+          <h3 class="text-lg font-display font-semibold text-text-primary mb-2">Entegrasyon</h3>
+          <p class="text-sm text-text-muted">
+            E-ticaret platformunuzla tek tıkla entegre edin. Shopify, WooCommerce, Magento ve daha fazlası.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-purple/10 flex items-center justify-center mb-4">
+            <span class="text-2xl font-display font-bold text-purple">2</span>
+          </div>
+          <h3 class="text-lg font-display font-semibold text-text-primary mb-2">Analiz</h3>
+          <p class="text-sm text-text-muted">
+            AI, müşteri davranışlarını, satış patternlerini ve trendleri otomatik olarak analiz eder.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan/10 flex items-center justify-center mb-4">
+            <span class="text-2xl font-display font-bold text-cyan">3</span>
+          </div>
+          <h3 class="text-lg font-display font-semibold text-text-primary mb-2">Optimizasyon</h3>
+          <p class="text-sm text-text-muted">
+            Kişiselleştirilmiş öneriler ve otomatik aksiyonlarla satışlarınızı artırın.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="py-16 lg:py-24 bg-gradient-to-r from-pink/10 via-purple/10 to-cyan/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Kanıtlanmış Sonuçlar
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          Commercelytics AI kullanan e-ticaret sitelerinin ortalama performansı
+        </p>
+      </div>
+      <Metrics metrics={results} columns={4} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="E-Ticaretinizi Büyütmeye Hazır mısınız?"
+    description="Commercelytics AI ile müşteri deneyimini kişiselleştirin ve satışları artırın."
+    primaryCta={{ text: 'Ücretsiz Deneyin', href: '/contact' }}
+    secondaryCta={{ text: 'Blog\'u Oku', href: '/blog' }}
+  />
+</Layout>

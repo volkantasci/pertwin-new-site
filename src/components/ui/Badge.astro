@@ -1,0 +1,29 @@
+---
+interface Props {
+  variant?: 'cyan' | 'purple' | 'pink' | 'default';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { variant = 'default', size = 'sm', class: className = '' } = Astro.props;
+
+const baseStyles = 'inline-flex items-center font-medium rounded-full';
+
+const variants = {
+  default: 'text-text-secondary bg-white/5',
+  cyan: 'text-cyan bg-cyan/10',
+  purple: 'text-purple bg-purple/10',
+  pink: 'text-pink bg-pink/10',
+};
+
+const sizes = {
+  sm: 'px-3 py-1 text-xs',
+  md: 'px-4 py-1.5 text-sm',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>

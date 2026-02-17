@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Metrics from '../components/sections/Metrics.astro';
+import CTA from '../components/sections/CTA.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+
+const values = [
+  {
+    icon: 'lightning',
+    title: 'Yenilikçilik',
+    description: 'Sürekli olarak en son AI ve ML teknolojilerini takip edip platformumuza entegre ediyoruz.',
+  },
+  {
+    icon: 'users',
+    title: 'Müşteri Odaklılık',
+    description: 'Her müşterimizin benzersiz ihtiyaçlarını anlıyor ve ona göre çözümler sunuyoruz.',
+  },
+  {
+    icon: 'shield',
+    title: 'Güvenilirlik',
+    description: 'Banka seviyesinde güvenlik ve %99.9 uptime ile verileriniz hep güvende.',
+  },
+  {
+    icon: 'trending-up',
+    title: 'Sonuç Odaklılık',
+    description: 'Ölçülebilir sonuçlar ve ROI odaklı yaklaşımımızla gerçek değer yaratıyoruz.',
+  },
+];
+
+const milestones = [
+  { year: '2022', title: 'Kuruluş', description: 'PerTwin, İstanbul\'da perakende analitiği için kuruldu.' },
+  { year: '2023', title: 'İlk Müşteriler', description: 'Türkiye\'nin önde gelen perakende zincirleriyle çalışmaya başladık.' },
+  { year: '2024', title: 'Genişleme', description: '500+ mağazada aktif kullanım, yeni özellikler ve modüller.' },
+  { year: '2025', title: 'Bölgesel Liderlik', description: 'Türkiye\'nin lider perakende AI platformu olduk.' },
+];
+
+const stats = [
+  { value: '500+', label: 'Aktif Mağaza', variant: 'cyan' as const },
+  { value: '50+', label: 'Kurumsal Müşteri', variant: 'purple' as const },
+  { value: '₺2M+', label: 'Kazandırılan Gelir', variant: 'pink' as const },
+  { value: '30+', label: 'Ekip Üyesi', variant: 'cyan' as const },
+];
+---
+
+<Layout title="Hakkımızda — PerTwin">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple/10 via-bg-primary to-cyan/10"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <Badge variant="purple" class="mb-6">Hakkımızda</Badge>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary">
+          Perakendeyi <span class="gradient-text">Dönüştürüyoruz</span>
+        </h1>
+        <p class="mt-6 text-lg lg:text-xl text-text-secondary">
+          PerTwin, yapay zeka ve veri analitiği ile perakende sektörünü dönüştürmek için
+          kuruldu. Misyonumuz, perakendecilerin verilerini en değerli varlıklarına dönüştürmelerine
+          yardımcı olmak.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <Badge variant="cyan" class="mb-4">Misyonumuz</Badge>
+          <h2 class="text-3xl font-display font-bold text-text-primary mb-6">
+            Veriden Aksiyona, Tek Platform
+          </h2>
+          <p class="text-text-secondary mb-4">
+            Her gün perakende operasyonlarında milyonlarca veri noktası oluşuyor. Ancak bu verilerin
+            çoğu kullanılmıyor veya etkisizce değerlendiriliyor.
+          </p>
+          <p class="text-text-secondary mb-4">
+            PerTwin olarak, bu verileri anlamlı içgörülere dönüştürüp, perakendecilerin daha
+            hızlı ve daha doğru kararlar almasını sağlıyoruz.
+          </p>
+          <p class="text-text-secondary">
+            AI destekli platformumuz, fiziksel mağazalardan e-ticarete kadar tüm perakende
+            kanallarında operasyonel mükemmellik sağlıyor.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <Card padding="md" class="text-center">
+            <p class="text-4xl font-display font-bold text-cyan">2022</p>
+            <p class="text-sm text-text-muted mt-2">Kuruluş Yılı</p>
+          </Card>
+          <Card padding="md" class="text-center">
+            <p class="text-4xl font-display font-bold text-purple">İstanbul</p>
+            <p class="text-sm text-text-muted mt-2">Merkez</p>
+          </Card>
+          <Card padding="md" class="text-center">
+            <p class="text-4xl font-display font-bold text-pink">24/7</p>
+            <p class="text-sm text-text-muted mt-2">Destek</p>
+          </Card>
+          <Card padding="md" class="text-center">
+            <p class="text-4xl font-display font-bold text-cyan">%99.9</p>
+            <p class="text-sm text-text-muted mt-2">Uptime</p>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="pink" class="mb-4">Değerlerimiz</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Bizi Biz Yapan Değerler
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <Card hover>
+            <div class="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center mb-4">
+              <Icon name={value.icon} size="lg" class="text-cyan" />
+            </div>
+            <h3 class="text-lg font-display font-semibold text-text-primary mb-2">{value.title}</h3>
+            <p class="text-sm text-text-muted">{value.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="cyan" class="mb-4">Yolculuğumuz</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Büyüme Hikayemiz
+        </h2>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan via-purple to-pink"></div>
+
+        <div class="space-y-12">
+          {milestones.map((milestone, index) => (
+            <div class={`relative flex items-center ${index % 2 === 0 ? 'lg:justify-start' : 'lg:justify-end'}`}>
+              <div class={`lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'} pl-16 lg:pl-0`}>
+                <Card padding="md" variant="gradient">
+                  <Badge variant={index % 2 === 0 ? 'cyan' : 'purple'}>{milestone.year}</Badge>
+                  <h3 class="mt-2 text-lg font-display font-semibold text-text-primary">{milestone.title}</h3>
+                  <p class="text-sm text-text-muted mt-2">{milestone.description}</p>
+                </Card>
+              </div>
+
+              <!-- Timeline dot -->
+              <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-cyan rounded-full -translate-x-1/2 border-4 border-bg-secondary"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Rakamlarla PerTwin
+        </h2>
+      </div>
+      <Metrics metrics={stats} columns={4} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="Ekibimize Katılın"
+    description="Perakendenin geleceğini şekillendirmek için yetenekli insanlara ihtiyacımız var."
+    primaryCta={{ text: 'Kariyer Fırsatları', href: '/contact' }}
+    secondaryCta={{ text: 'Blog\'u Oku', href: '/blog' }}
+  />
+</Layout>

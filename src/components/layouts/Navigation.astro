@@ -1,0 +1,110 @@
+---
+const navLinks = [
+  { href: '/', label: 'Ana Sayfa' },
+  { href: '/store', label: 'Mağaza' },
+  { href: '/ecommerce', label: 'E-Ticaret' },
+  { href: '/features', label: 'Özellikler' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'Hakkımızda' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-lg border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan to-purple flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="text-xl font-display font-bold text-text-primary group-hover:text-cyan transition-colors">
+          PerTwin
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`text-sm font-medium transition-colors hover:text-cyan ${
+              currentPath === link.href ? 'text-cyan' : 'text-text-secondary'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA Button (Desktop) -->
+      <div class="hidden lg:block">
+        <a
+          href="/contact"
+          class="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-bg-primary bg-gradient-to-r from-cyan to-purple rounded-lg hover:opacity-90 transition-opacity"
+        >
+          Demo Al
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6 menu-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="w-6 h-6 menu-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-bg-secondary border-t border-white/5">
+    <div class="px-4 py-4 space-y-2">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+            currentPath === link.href
+              ? 'text-cyan bg-cyan/10'
+              : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="block mt-4 px-4 py-3 text-center text-sm font-semibold text-bg-primary bg-gradient-to-r from-cyan to-purple rounded-lg"
+      >
+        Demo Al
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer for fixed nav -->
+<div class="h-16 lg:h-20"></div>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOpenIcon = menuBtn?.querySelector('.menu-open');
+  const menuCloseIcon = menuBtn?.querySelector('.menu-close');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuOpenIcon?.classList.toggle('hidden');
+    menuCloseIcon?.classList.toggle('hidden');
+  });
+</script>

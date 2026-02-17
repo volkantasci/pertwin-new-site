@@ -1,0 +1,142 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`relative ${className}`}>
+  <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+    <!-- Offline Data -->
+    <div class="relative p-6 rounded-2xl bg-bg-card border border-white/10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-blue/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-text-primary">Çevrimdışı Veri</h3>
+      </div>
+      <ul class="space-y-2 text-sm text-text-muted">
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+          POS / ERP Satış Verileri
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+          Stok Seviyeleri
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+          İade ve Değişimler
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+          Kampanya Performansı
+        </li>
+      </ul>
+      <p class="mt-4 text-xs text-text-muted italic">
+        Sonuç gösterir, nedeni açıklamaz
+      </p>
+    </div>
+
+    <!-- Fusion Engine -->
+    <div class="relative p-6 rounded-2xl bg-gradient-to-b from-purple/20 to-bg-card border border-purple/30">
+      <div class="absolute inset-0 bg-gradient-glow opacity-30"></div>
+      <div class="relative">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan to-purple flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-semibold text-center text-text-primary mb-4">Fusion Engine</h3>
+        <ul class="space-y-2 text-sm text-text-muted">
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple"></span>
+            Ziyaret-İşleşme Eşleştirme
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple"></span>
+            Etkileşim-SKU Bağlama
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple"></span>
+            Bölge-Kategori Haritalama
+          </li>
+        </ul>
+        <p class="mt-4 text-xs text-center text-purple font-medium">
+          Verileri Birleştirir, İçgörü Üretir
+        </p>
+      </div>
+    </div>
+
+    <!-- Online/Vision Data -->
+    <div class="relative p-6 rounded-2xl bg-bg-card border border-white/10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-cyan/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-text-primary">Vision Verisi</h3>
+      </div>
+      <ul class="space-y-2 text-sm text-text-muted">
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
+          Ziyaretçi Sayısı
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
+          İlgi Alanları ve Bölgeler
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
+          Ürün Etkileşimleri
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan"></span>
+          IoT / Kamera Verisi
+        </li>
+      </ul>
+      <p class="mt-4 text-xs text-text-muted italic">
+        Süreci gösterir, sonucu açıklamaz
+      </p>
+    </div>
+  </div>
+
+  <!-- Output Arrow -->
+  <div class="mt-8 flex justify-center">
+    <div class="flex items-center gap-4">
+      <svg class="w-8 h-8 text-purple animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Unified Insights -->
+  <div class="mt-6 p-6 rounded-2xl bg-gradient-to-r from-cyan/10 via-purple/10 to-pink/10 border border-white/10">
+    <h3 class="text-lg font-semibold text-center text-text-primary mb-4">Birleşik Metrikler</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div>
+        <p class="text-2xl font-display font-bold text-cyan">%95</p>
+        <p class="text-xs text-text-muted mt-1">Gerçek Dönüşüm Oranı</p>
+      </div>
+      <div>
+        <p class="text-2xl font-display font-bold text-purple">Kayıp Satış</p>
+        <p class="text-xs text-text-muted mt-1">Analizi</p>
+      </div>
+      <div>
+        <p class="text-2xl font-display font-bold text-pink">Bölge</p>
+        <p class="text-xs text-text-muted mt-1">Verimliliği</p>
+      </div>
+      <div>
+        <p class="text-2xl font-display font-bold text-blue">Müşteri</p>
+        <p class="text-xs text-text-muted mt-1">Yolculuğu</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Metrics from '../components/sections/Metrics.astro';
+import CTA from '../components/sections/CTA.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+import Icon from '../components/ui/Icon.astro';
+import DataFusion from '../components/visual/DataFusion.astro';
+import StoreHeatmap from '../components/visual/StoreHeatmap.astro';
+import ConversionFunnel from '../components/visual/ConversionFunnel.astro';
+import DashboardPreview from '../components/visual/DashboardPreview.astro';
+import CustomerJourney from '../components/visual/CustomerJourney.astro';
+
+const modules = [
+  {
+    icon: 'chart',
+    title: 'StoreAnalytics View',
+    description: 'Her mağaza için tek bakışta durum analizi sunan canlı profil modülü.',
+    features: ['Canlı sağlık skoru ve trend takibi', 'Günlük performans vs beklenti', 'Aktif alertler ve önerilen aksiyonlar'],
+  },
+  {
+    icon: 'users',
+    title: 'Network Intelligence',
+    description: 'Tüm mağaza ağı üzerinde kuş bakışı analiz ve stratejik yönetim.',
+    features: ['En iyi/en kötü performans analizi', 'Coğrafi performans haritaları', 'Network genelinde risk alanları'],
+  },
+  {
+    icon: 'eye',
+    title: 'Visitor Intelligence',
+    description: 'IoT verilerinden elde edilen derinlemesine müşteri davranışı içgörüleri.',
+    features: ['Ziyaretçi sayısı ve dönüşüm oranı', 'Bölge bazlı trafik ve kalış süresi', 'Ürün etkileşim analizi (Gör-Al-Sat)'],
+  },
+];
+
+const results = [
+  { value: '15-25%', label: 'Kayıp Satış Azalması', variant: 'cyan' as const },
+  { value: '+30%', label: 'Verimlilik Artışı', variant: 'purple' as const },
+  { value: '8-12%', label: 'Dönüşüm Artışı', variant: 'pink' as const },
+  { value: '95%+', label: 'ML Doğruluğu', variant: 'cyan' as const },
+];
+---
+
+<Layout title="StoreAnalytics AI — Mağazanızın Dijital İkizi">
+  <!-- Hero Section -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 via-bg-primary to-bg-primary"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <Badge variant="cyan" class="mb-6">Fiziksel Mağaza Analitiği</Badge>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
+            Mağazanızın <span class="text-cyan">Dijital İkizi</span>
+          </h1>
+          <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-xl">
+            Her fiziksel mağazanız için gerçek zamanlı verilerle beslenen, yaşayan bir dijital model.
+            Vision ve Offline Data Fusion ile "neden" sorusuna yanıt verin ve proaktif kararlar alın.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/contact" class="inline-flex items-center px-6 py-3 text-base font-semibold text-bg-primary bg-gradient-to-r from-cyan to-purple rounded-lg hover:opacity-90 transition-opacity">
+              Demoya Başla
+              <Icon name="arrow-right" size="sm" class="ml-2" />
+            </a>
+            <a href="#modules" class="inline-flex items-center px-6 py-3 text-base font-semibold text-text-primary bg-bg-tertiary border border-white/10 rounded-lg hover:bg-bg-card transition-colors">
+              Teknik Detaylar
+            </a>
+          </div>
+        </div>
+
+        <div class="hidden lg:block">
+          <DashboardPreview variant="store" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Fusion Section -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="purple" class="mb-4">Teknoloji</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Veri Fusion: Oyunun Kuralları Değişiyor
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Tek başına her veri kaynağı eksik. Birlikte? Devrim!
+        </p>
+      </div>
+      <DataFusion />
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="cyan" class="mb-4">Mimari</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          StoreAnalytics Mimarisi
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <Card variant="gradient" padding="lg">
+          <div class="w-12 h-12 rounded-xl bg-blue/20 flex items-center justify-center mb-4">
+            <Icon name="database" size="lg" class="text-blue" />
+          </div>
+          <h3 class="text-xl font-display font-semibold text-text-primary mb-3">Veri Katmanları</h3>
+          <p class="text-sm text-text-muted mb-4">Tüm veri kaynaklarından gerçek zamanlı bilgi toplama</p>
+          <ul class="space-y-2 text-sm text-text-secondary">
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Offline: POS, ERP, Stok, Kampanya
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Vision: Kamera, Beacon, WiFi, RFID
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Entegre veri warehouse
+            </li>
+          </ul>
+        </Card>
+
+        <Card variant="gradient" padding="lg" class="border-purple/30">
+          <div class="w-12 h-12 rounded-xl bg-purple/20 flex items-center justify-center mb-4">
+            <Icon name="brain" size="lg" class="text-purple" />
+          </div>
+          <h3 class="text-xl font-display font-semibold text-text-primary mb-3">Fusion Engine</h3>
+          <p class="text-sm text-text-muted mb-4">Yapay zeka destekli veri birleştirme ve analiz</p>
+          <ul class="space-y-2 text-sm text-text-secondary">
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-purple mt-0.5" />
+              Ziyaret-İşlem Eşleştirme
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-purple mt-0.5" />
+              Etkileşim-SKU Bağlama
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-purple mt-0.5" />
+              Bölge-Kategori Haritalama
+            </li>
+          </ul>
+        </Card>
+
+        <Card variant="gradient" padding="lg">
+          <div class="w-12 h-12 rounded-xl bg-cyan/20 flex items-center justify-center mb-4">
+            <Icon name="trending-up" size="lg" class="text-cyan" />
+          </div>
+          <h3 class="text-xl font-display font-semibold text-text-primary mb-3">Birleşik Metrikler</h3>
+          <p class="text-sm text-text-muted mb-4">Aksiyon alınabilir içgörüler ve öneriler</p>
+          <ul class="space-y-2 text-sm text-text-secondary">
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Gerçek Dönüşüm Oranı
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Kayıp Satışlar
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" size="sm" class="text-cyan mt-0.5" />
+              Bölge Verimliliği
+            </li>
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules Section -->
+  <section id="modules" class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="purple" class="mb-4">Modüller</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Temel Modüller
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {modules.map((module) => (
+          <Card hover>
+            <div class="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center mb-4">
+              <Icon name={module.icon} size="lg" class="text-cyan" />
+            </div>
+            <h3 class="text-xl font-display font-semibold text-text-primary mb-3">{module.title}</h3>
+            <p class="text-sm text-text-muted mb-4">{module.description}</p>
+            <ul class="space-y-2 text-sm text-text-secondary">
+              {module.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <Icon name="check" size="sm" class="text-green-400 mt-0.5" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visualization Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="cyan" class="mb-4">Görselleştirme</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Mağaza İçgörüleri
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <StoreHeatmap />
+        <ConversionFunnel />
+      </div>
+
+      <div class="mt-8">
+        <CustomerJourney />
+      </div>
+    </div>
+  </section>
+
+  <!-- Real World Scenario -->
+  <section class="py-16 lg:py-24 bg-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="pink" class="mb-4">Senaryo</Badge>
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Gerçek Dünya Senaryoları
+        </h2>
+      </div>
+
+      <Card variant="gradient" padding="lg" class="border-cyan/20">
+        <Badge variant="cyan">Senaryo 1</Badge>
+        <h3 class="mt-4 text-2xl font-display font-bold text-text-primary">Stok Optimizasyonu</h3>
+
+        <div class="mt-8 space-y-6">
+          <div>
+            <h4 class="font-semibold text-text-primary mb-2">Durum</h4>
+            <p class="text-text-secondary">
+              B007 mağazasında Erkek Triko satışları beklenenden düşük seyrediyor. Stok ve fiyat peer mağazalarla aynı.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-text-primary mb-2">StoreAnalytics Analizi</h4>
+            <p class="text-text-secondary">
+              Zone Analizi ve Heatmap, müşterilerin girişten sağa (Kadın bölümü) yöneldiğini, Erkek bölümünde trafiğin çok düşük olduğunu gösteriyor.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-text-primary mb-2">Önerilen Aksiyon</h4>
+            <p class="text-text-secondary">
+              Erkek Triko reyonunu giriş yakınına taşıyın veya yönlendirme ekleyin.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-green-500/10 border-l-4 border-green-500">
+            <p class="text-sm text-text-muted mb-1">Tahmini Sonuç</p>
+            <p class="text-2xl font-display font-bold text-green-400">₺12K/hafta ek satış</p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="py-16 lg:py-24 bg-gradient-to-r from-cyan/10 via-purple/10 to-pink/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-text-primary">
+          Kanıtlanmış Sonuçlar
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          StoreAnalytics kullanan perakendecilerin ortalama performans iyileştirmeleri
+        </p>
+      </div>
+      <Metrics metrics={results} columns={4} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="Mağazanızı Dijital İkiz ile Dönüştürün"
+    description="StoreAnalytics AI ile mağaza performansınızı artırın, kayıp satışları azaltın."
+    primaryCta={{ text: 'Demo Talep Et', href: '/contact' }}
+    secondaryCta={{ text: 'Özellikleri Gör', href: '/features' }}
+  />
+</Layout>
