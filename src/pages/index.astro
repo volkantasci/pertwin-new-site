@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/sections/Hero.astro';
 import Features from '../components/sections/Features.astro';
 import Metrics from '../components/sections/Metrics.astro';
 import CTA from '../components/sections/CTA.astro';
@@ -9,6 +8,7 @@ import Button from '../components/ui/Button.astro';
 import Badge from '../components/ui/Badge.astro';
 import Icon from '../components/ui/Icon.astro';
 import DataFusion from '../components/visual/DataFusion.astro';
+import RadarStore from '../components/visual/RadarStore.astro';
 
 const heroStats = [
   { value: '95%', label: 'Tahmin Doğruluğu' },
@@ -55,63 +55,43 @@ const ecommerceFeatures = [
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,229,255,0.1),transparent_50%)]"></div>
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.1),transparent_50%)]"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <Badge variant="cyan" class="mb-6">
-            <span class="w-2 h-2 rounded-full bg-cyan animate-pulse mr-2"></span>
-            Yapay Zeka Destekli
-          </Badge>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
-            Geleceğin <span class="gradient-text">Perakende Zekası</span>
-          </h1>
-          <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-xl">
-            Mağazalarınız ve e-ticaret operasyonlarınız için yapay zeka destekli dijital ikiz platform.
-            Veriden aksiyona, tek platformda.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary" size="lg">
-              Ücretsiz Demo
-              <Icon name="arrow-right" size="sm" class="ml-2" />
-            </Button>
-            <Button href="/features" variant="secondary" size="lg">
-              Özellikleri Keşfet
-            </Button>
-          </div>
+    <!-- Radar Background -->
+    <RadarStore class="opacity-40 lg:opacity-60" />
 
-          <!-- Hero Stats -->
-          <div class="mt-12 grid grid-cols-3 gap-6">
-            {heroStats.map((stat) => (
-              <div>
-                <p class="text-2xl lg:text-3xl font-display font-bold text-cyan">{stat.value}</p>
-                <p class="text-sm text-text-muted">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+    <!-- Gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-bg-primary/95 via-bg-primary/80 to-transparent lg:from-bg-primary/90 lg:via-bg-primary/60"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="max-w-2xl">
+        <Badge variant="cyan" class="mb-6">
+          <span class="w-2 h-2 rounded-full bg-cyan animate-pulse mr-2"></span>
+          Yapay Zeka Destekli
+        </Badge>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary leading-tight">
+          Geleceğin <span class="gradient-text">Perakende Zekası</span>
+        </h1>
+        <p class="mt-6 text-lg lg:text-xl text-text-secondary max-w-xl">
+          Mağazalarınız ve e-ticaret operasyonlarınız için yapay zeka destekli dijital ikiz platform.
+          Veriden aksiyona, tek platformda.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/contact" variant="primary" size="lg">
+            Ücretsiz Demo
+            <Icon name="arrow-right" size="sm" class="ml-2" />
+          </Button>
+          <Button href="/features" variant="secondary" size="lg">
+            Özellikleri Keşfet
+          </Button>
         </div>
 
-        <!-- Visual -->
-        <div class="hidden lg:block relative">
-          <div class="relative w-full h-[500px]">
-            <!-- Animated brain visual -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-cyan to-purple rounded-full blur-[60px] opacity-60 animate-pulse"></div>
-
-            <!-- Orbit rings -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border border-white/10 rounded-full animate-spin" style="animation-duration: 20s;"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/10 rounded-full animate-spin" style="animation-duration: 30s; animation-direction: reverse;"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/10 rounded-full animate-spin" style="animation-duration: 40s;"></div>
-
-            <!-- Orbit nodes -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72">
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-cyan rounded-full shadow-lg shadow-cyan/50"></div>
+        <!-- Hero Stats -->
+        <div class="mt-12 grid grid-cols-3 gap-6">
+          {heroStats.map((stat) => (
+            <div>
+              <p class="text-2xl lg:text-3xl font-display font-bold text-cyan">{stat.value}</p>
+              <p class="text-sm text-text-muted">{stat.label}</p>
             </div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96">
-              <div class="absolute top-1/2 right-0 -translate-y-1/2 w-3 h-3 bg-purple rounded-full shadow-lg shadow-purple/50"></div>
-            </div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px]">
-              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-pink rounded-full shadow-lg shadow-pink/50"></div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
